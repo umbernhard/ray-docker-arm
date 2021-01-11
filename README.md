@@ -1,4 +1,4 @@
-Fork of the [Ray Dockerfile directory](https://github.com/ray-project/ray/tree/master/docker)
+Fork of the [Ray Dockerfile directory](https://github.com/ray-project/ray/tree/master/docker). Replaces images for x86_64 systems with aarch64.
 
 Overview of how the ray images are built:
 
