@@ -30,6 +30,7 @@ RUN sudo apt-get update -y && sudo apt-get upgrade -y \
         git \
         wget \
         cmake \
+	make \
         $(if [ "$AUTOSCALER" = "autoscaler" ]; then echo \
         tmux \
         screen \
