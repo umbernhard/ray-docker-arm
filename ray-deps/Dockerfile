@@ -1,5 +1,5 @@
 ARG GPU=""
-FROM ray-docker-arm/base-deps:nightly"$GPU"
+FROM umbernhard/base-deps-arm:latest"$GPU"
 # If this arg is not "autoscaler" then no autoscaler requirements will be included
 ARG AUTOSCALER="autoscaler"
 ARG WHEEL_PATH
@@ -7,7 +7,7 @@ ARG WHEEL_PATH
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 COPY $WHEEL_PATH .
-RUN pip --no-cache-dir install $(basename $WHEEL_PATH)[all] \
+RUN python3 -m pip --no-cache-dir install $(basename $WHEEL_PATH)[all] \
     $(if [ "$AUTOSCALER" = "autoscaler" ]; then echo \
         "boto3==1.4.8" \
         "google-api-python-client==1.7.8" \
@@ -17,4 +17,4 @@ RUN pip --no-cache-dir install $(basename $WHEEL_PATH)[all] \
         "azure-mgmt-compute==12.0.0" \
         "azure-mgmt-msi==1.0.0" \
         "azure-mgmt-network==10.1.0"; fi) \
-    && pip uninstall ray -y && sudo rm $(basename $WHEEL_PATH)
+    && python3 -m pip uninstall ray -y && sudo rm $(basename $WHEEL_PATH)

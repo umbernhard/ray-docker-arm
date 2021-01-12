@@ -35,8 +35,9 @@ RUN sudo apt-get update -y && sudo apt-get upgrade -y \
         screen \
         rsync \
         openssh-client \
+	python3-pip \
         gnupg; fi) \
-    && pip install --no-cache-dir \
+    && python3 -m pip install --no-cache-dir \
         flatbuffers \
         cython==0.29.0 \
         numpy==1.15.4 \
@@ -45,7 +46,7 @@ RUN sudo apt-get update -y && sudo apt-get upgrade -y \
     # blist is needed for numpy (which is re-installed when ray is installed)
     # To avoid the following error on Jenkins:
     # AttributeError: 'numpy.ufunc' object has no attribute '__module__'
-    && pip uninstall -y dask \ 
+    && python3 -m pip uninstall -y dask \ 
     # We install cmake temporarily to get psutil
     && sudo apt-get autoremove -y cmake \
     # Either install kubectl or remove wget 
