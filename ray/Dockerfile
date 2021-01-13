@@ -7,3 +7,4 @@ ENV LANG=C.UTF-8
 COPY $WHEEL_PATH .
 RUN python3 -m pip --no-cache-dir install `basename $WHEEL_PATH`[all] \
 && sudo rm `basename $WHEEL_PATH`
+RUN echo "export PATH=$PATH:/home/ray/.local/bin/" >> ~/.bashrc
