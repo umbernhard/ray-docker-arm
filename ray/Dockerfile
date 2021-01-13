@@ -5,6 +5,8 @@ ARG WHEEL_PATH
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 COPY $WHEEL_PATH .
-RUN python3 -m pip --no-cache-dir install `basename $WHEEL_PATH`[all] \
+RUN python3 -m pip --no-cache-dir install `basename $WHEEL_PATH` \
 && sudo rm `basename $WHEEL_PATH`
 RUN echo "export PATH=$PATH:/home/ray/.local/bin/" >> ~/.bashrc
+RUN echo 'alias pip="python3 -m pip"' >> ~/.bashrc
+RUN echo 'alias python="python3"' >> ~/.bashrc
